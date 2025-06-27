@@ -32,7 +32,7 @@
                             <p class="font-lato text-sm text-gray-500 mt-1 flex-grow">{{ $product->description }}</p>
                             <div class="mt-auto pt-4">
                                 <p class="text-lg text-rose-600 font-bold font-poppins mb-3">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
-                                <a href="#" class="block text-center w-full bg-slate-800 text-white font-poppins py-2.5 px-4 rounded-lg hover:bg-slate-700 transition-colors duration-300">
+                                <a href="{{ route('products.show', $product->slug) }}" class="block text-center w-full bg-slate-800 text-white font-poppins py-2.5 px-4 rounded-lg hover:bg-slate-700 transition-colors duration-300">
                                     Lihat Detail
                                 </a>
                             </div>

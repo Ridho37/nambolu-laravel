@@ -18,6 +18,7 @@ class Product extends Model
     // app/Models/Product.php
     protected $fillable = [
         'name',
+        'slug',
         'description',
         'price',
         'image',
