@@ -49,7 +49,7 @@
                     <nav class="mt-4 space-y-2">
                         <a href="/#home" class="block text-gray-400 hover:text-white transition-colors duration-300">Home</a>
                         <a href="/#About" class="block text-gray-400 hover:text-white transition-colors duration-300">About</a>
-                        <a href="{{ url('/products') }}" class="block text-gray-400 hover:text-white transition-colors duration-300">Semua Menu</a>
+                        <a href="{{ route('products.index') }}" class="block text-gray-400 hover:text-white transition-colors duration-300">Semua Menu</a>
                         <a href="/#Contact" class="block text-gray-400 hover:text-white transition-colors duration-300">Hubungi Kami</a>
                     </nav>
                 </div>
