@@ -24,4 +24,5 @@ class ProductController extends Controller
         // Kirim data produk tunggal tersebut ke view 'products.show'
         return view('products.show', ['product' => $product]);
     }
+
 }
