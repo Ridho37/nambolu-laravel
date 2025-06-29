@@ -35,11 +35,6 @@ class AuthController extends Controller
         ])->onlyInput('username');
     }
 
-    public function dashboard()
-    {
-        return view('dashboard.dashboard-page');
-    }
-
     public function logout(Request $request)
     {
         Auth::logout();
