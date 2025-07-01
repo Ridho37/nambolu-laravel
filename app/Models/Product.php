@@ -16,6 +16,16 @@ class Product extends Model
      */
     // app/Models/Product.php
     // app/Models/Product.php
+    public static function getRecentProducts($limit = 3)
+    {
+        return self::latest()->take($limit)->get();
+    }
+
+    public function category()
+    {
+        return $this-> belongsTo(Category::class);
+    }
+
     protected $fillable = [
         'name',
         'slug',

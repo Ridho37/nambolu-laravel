@@ -6,16 +6,16 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
     <div class="bg-white p-6 rounded-xl shadow-md">
         <p class="text-sm font-medium text-gray-500">Jumlah Produk Aktif</p>
-        <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">42</p>
+        <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">{{ $totalProducts }}</p>
     </div>
     <div class="bg-white p-6 rounded-xl shadow-md">
         <p class="text-sm font-medium text-gray-500">Kategori Produk</p>
-        <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">5</p>
+        <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">{{ $totalCategories }}</p>
     </div>
-    <div class="bg-white p-6 rounded-xl shadow-md">
+    {{-- <div class="bg-white p-6 rounded-xl shadow-md">
         <p class="text-sm font-medium text-gray-500">Promosi Aktif</p>
         <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">3</p>
-    </div>
+    </div> --}}
     <div class="bg-white p-6 rounded-xl shadow-md">
         <p class="text-sm font-medium text-gray-500">Stok Hampir Habis</p>
         <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">5</p>
@@ -31,8 +31,9 @@
         <table class="w-full text-left">
             <thead class="border-b-2 border-slate-100">
                 <tr>
-                    <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Nama Produk</th>
+                    <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Nama</th>
                     <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Kategori</th>
+                    <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Deskripsi</th>
                     <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Harga</th>
                     <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Stok</th>
                 </tr>
