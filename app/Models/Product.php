@@ -9,28 +9,28 @@ class Product extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    // app/Models/Product.php
-    // app/Models/Product.php
-    public static function getRecentProducts($limit = 3)
-    {
-        return self::latest()->take($limit)->get();
-    }
-
-    public function category()
-    {
-        return $this-> belongsTo(Category::class);
-    }
-
     protected $fillable = [
         'name',
         'slug',
+        'category_id',
         'description',
         'price',
         'image',
     ];
+
+    /**
+     * Relasi ke model Category.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Fungsi kustom untuk mengambil produk terbaru.
+     */
+    public static function getRecentProducts($limit = 3)
+    {
+        return self::latest()->take($limit)->get();
+    }
 }

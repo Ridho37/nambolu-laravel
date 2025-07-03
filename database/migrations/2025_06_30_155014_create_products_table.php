@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->foreignId('id_category')->constrained('categories')->onDelete('cascade');
-            $table->text('description')->nullable();
-            $table->unsignedInteger('price')->default(0);
-            $table->unsignedInteger('stock')->default(0);
-            $table->string('image')->nullable(); // Untuk menyimpan path/nama file gambar
-            $table->timestamps(); // Membuat kolom created_at dan updated_at
+            
+            // INI ADALAH KOLOM PENTING YANG TERLEWAT
+            $table->foreignId('category_id')->constrained('categories');
+            
+            $table->text('description');
+            $table->integer('price');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 

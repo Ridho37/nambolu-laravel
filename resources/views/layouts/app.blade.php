@@ -22,11 +22,18 @@
                 <h1 class="text-3xl pl-3 my-auto font-poppins font-bold text-slate-800">Nambolu</h1>
             </a>
 
-            <div id="main-nav" class="hidden md:flex space-x-8 text-lg font-poppins text-slate-800">
-                <a href="/#home" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="home">Home</a>
-                <a href="/#About" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="About">About</a>
-                <a href="/#Product" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="Product">Products</a>
-                <a href="/#Contact" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="Contact">Contact</a>
+            <div id="main-nav" class="hidden md:flex items-center space-x-8 text-lg font-poppins text-slate-800">
+
+                {{-- Link ini akan selalu mengarah ke section di Halaman Utama --}}
+                <a href="{{ route('home') }}#home" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="home">Home</a>
+                <a href="{{ route('home') }}#About" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="About">About</a>
+                
+                {{-- Link Products dengan kondisi aktif --}}
+                <a href="{{ route('products.index') }}" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600 {{ request()->routeIs('products.*') ? 'text-rose-600 font-bold' : '' }}" data-target-id="Product">
+                    Products
+                </a>
+                
+                <a href="{{ route('home') }}#Contact" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="Contact">Contact</a>
             </div>
         </div>
     </nav>

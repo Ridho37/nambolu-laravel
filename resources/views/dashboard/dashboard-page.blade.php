@@ -3,25 +3,6 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-    <div class="bg-white p-6 rounded-xl shadow-md">
-        <p class="text-sm font-medium text-gray-500">Jumlah Produk Aktif</p>
-        <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">{{ $totalProducts }}</p>
-    </div>
-    <div class="bg-white p-6 rounded-xl shadow-md">
-        <p class="text-sm font-medium text-gray-500">Kategori Produk</p>
-        <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">{{ $totalCategories }}</p>
-    </div>
-    {{-- <div class="bg-white p-6 rounded-xl shadow-md">
-        <p class="text-sm font-medium text-gray-500">Promosi Aktif</p>
-        <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">3</p>
-    </div> --}}
-    <div class="bg-white p-6 rounded-xl shadow-md">
-        <p class="text-sm font-medium text-gray-500">Stok Hampir Habis</p>
-        <p class="text-3xl font-poppins font-bold text-slate-800 mt-1">5</p>
-    </div>
-</div>
-
 <div class="bg-white p-6 rounded-xl shadow-md">
     <div class="flex justify-between items-center mb-4">
         <h3 class="text-xl font-poppins font-bold text-slate-800">Produk Baru Ditambahkan</h3>

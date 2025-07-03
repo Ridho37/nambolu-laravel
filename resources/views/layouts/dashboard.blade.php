@@ -27,31 +27,46 @@
                 </a>
             </div>
 
-            <nav class="px-4 text-lg">
-                <a href="#" class="flex items-center px-4 py-3 mt-2 text-slate-300 hover:bg-slate-700 rounded-lg transition-colors duration-200">
+            <nav class="px-4 text-lg space-y-2">
+                {{-- 
+                    Logika untuk menu aktif:
+                    request()->routeIs('admin.dashboard') akan bernilai true jika rute saat ini adalah 'admin.dashboard'.
+                    'bg-rose-600 text-white font-semibold' adalah kelas untuk menu aktif.
+                    'text-slate-300 hover:bg-slate-700' adalah kelas untuk menu tidak aktif.
+                --}}
+                <a href="{{ route('admin.dashboard') }}" 
+                class="flex items-center px-4 py-3 rounded-lg transition-colors duration-200 {{ request()->routeIs('admin.dashboard') ? 'bg-rose-600 text-white font-semibold' : 'text-slate-300 hover:bg-slate-700' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
                     <span>Dashboard</span>
                 </a>
-                <a href="{{ url('admin/dashboard/product') }}" class="flex items-center px-4 py-3 mt-2 text-slate-300 hover:bg-slate-700 rounded-lg transition-colors duration-200">
+                
+                <a href="{{ route('admin.products.index') }}" 
+                class="flex items-center px-4 py-3 rounded-lg transition-colors duration-200 {{ request()->routeIs('admin.products.*') ? 'bg-rose-600 text-white font-semibold' : 'text-slate-300 hover:bg-slate-700' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                     <span>Produk</span>
                 </a>
-                <a href="{{ url('admin/dashboard/promote') }}" class="flex items-center px-4 py-3 mt-2 text-slate-300 hover:bg-slate-700 rounded-lg transition-colors duration-200">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 002 2h3a2 2 0 002-2V7a2 2 0 00-2-2H5zM5 14a2 2 0 00-2 2v3a2 2 0 002 2h3a2 2 0 002-2v-3a2 2 0 00-2-2H5z"/></svg>
-                    <span>Promosi</span>
-                </a>
-                <a href="{{ url('admin/dashboard/category') }}" class="flex items-center px-4 py-3 bg-rose-600 text-white rounded-lg font-semibold">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 002 2h3a2 2 0 002-2V7a2 2 0 00-2-2H5zM5 14a2 2 0 00-2 2v3a2 2 0 002 2h3a2 2 0 002-2v-3a2 2 0 00-2-2H5z"/></svg>
+
+                <a href="{{ route('admin.categories.index') }}" 
+                class="flex items-center px-4 py-3 rounded-lg transition-colors duration-200 {{ request()->routeIs('admin.categories.*') ? 'bg-rose-600 text-white font-semibold' : 'text-slate-300 hover:bg-slate-700' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h.01M7 11h.01M16 3a1 1 0 011 1v2.5a1 1 0 01-1 1H8a1 1 0 01-1-1V4a1 1 0 011-1h8zM7 15h.01M7 19h.01M16 15a1 1 0 011 1v2.5a1 1 0 01-1 1H8a1 1 0 01-1-1V16a1 1 0 011-1h8z"></path></svg>
                     <span>Kategori</span>
                 </a>
-                 <a href="{{ url('admin/dashboard/settings') }}" class="flex items-center px-4 py-3 mt-2 text-slate-300 hover:bg-slate-700 rounded-lg transition-colors duration-200">
+
+                <a href="{{ route('admin.promotions.index') }}" 
+                class="flex items-center px-4 py-3 rounded-lg transition-colors duration-200 {{ request()->routeIs('admin.promotions.*') ? 'bg-rose-600 text-white font-semibold' : 'text-slate-300 hover:bg-slate-700' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14l6-6m-5.5.5a.5.5 0 11-1 0 .5.5 0 011 0zM15.5 15.5a.5.5 0 11-1 0 .5.5 0 011 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M14.5 11.9a3 3 0 01-4.2 0L5.5 7.1a3 3 0 010-4.2 3 3 0 014.2 0l4.8 4.8a3 3 0 010 4.2z"></path></svg>
+                    <span>Promosi</span>
+                </a>
+                
+                <a href="{{ route('admin.settings.index') }}" 
+                class="flex items-center px-4 py-3 rounded-lg transition-colors duration-200 {{ request()->routeIs('admin.settings.*') ? 'bg-rose-600 text-white font-semibold' : 'text-slate-300 hover:bg-slate-700' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.096 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                     <span>Pengaturan</span>
                 </a>
             </nav>
 
             <div class="absolute bottom-0 w-full px-4 mb-4">
-                <form action="{{ route('logout') }}" method="post">
+                <form action="{{ route('admin.logout') }}" method="post">
                     @csrf
                     <button type="submit" class="flex items-center px-4 py-3 mt-2 text-slate-300 hover:bg-slate-700 rounded-lg transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
@@ -70,21 +85,13 @@
                 </button>
                 <div class="hidden lg:block text-2xl font-poppins font-bold text-slate-800">Dashboard</div>
                 <div class="flex items-center space-x-4">
-                    <div x-data="{ dropdownOpen: false }" class="relative">
-                        <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2">
+                    <div class="relative">
+                        <div class="flex items-center space-x-2">
                             <img src="https://i.pravatar.cc/40" alt="Avatar" class="w-10 h-10 rounded-full">
                             <div class="hidden md:block text-left">
                                 <div class="font-poppins font-semibold text-sm text-slate-700">{{ auth()->user()->name }}</div>
                                 <div class="text-xs text-slate-500">Store Manager</div>
                             </div>
-                        </button>
-                        <div x-show="dropdownOpen" @click.away="dropdownOpen = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
-                            <a href="{{ url('admin/dashboard/profile') }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Profil Saya</a>
-                            <form action="{{ route('logout') }}" method="post" class="inline-block">
-                                @csrf
-                                <button type="submit" class="px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Logout</button>
-                            </form>
-                            
                         </div>
                     </div>
                 </div>

@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        if(Auth::check()){
-            return redirect()->route('dashboard.dashboard-page');
+        // Jika pengguna sudah login, alihkan ke dashboard yang benar
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard'); // <-- PERBAIKAN DI SINI
         }
+        
+        // Jika belum, tampilkan halaman login
         return view('dashboard.dashboard-login');
     }
 
@@ -24,14 +25,15 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            return redirect()->intended('admin/dashboard');
+            
+            // Menggunakan intended() adalah praktik yang baik
+            return redirect()->intended(route('admin.dashboard'));
         }
 
         return back()->withErrors([
-            'username' => 'Username atau password salah pak!',
+            'username' => 'Username atau password salah!',
         ])->onlyInput('username');
     }
 
