@@ -9,9 +9,10 @@ class ProductController extends Controller
 {
     public function index()
     {
-        // Hanya mengambil semua produk dan mengirimnya ke view
-        // $products = Product::latest()->get();
-        $products = Product::orderBy('id', 'desc')->paginate(3);
+        // Mengambil semua produk, diurutkan dari yang PALING LAMA
+        $products = Product::oldest()->get();
+
+        // Kirim data ke view 'products.index'
         return view('products.index', ['products' => $products]);
     }
 
