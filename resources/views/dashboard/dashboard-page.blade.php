@@ -25,7 +25,7 @@
 <div class="bg-white p-6 rounded-xl shadow-md">
     <div class="flex justify-between items-center mb-4">
         <h3 class="text-xl font-poppins font-bold text-slate-800">Produk Baru Ditambahkan</h3>
-        <a href="dashboard-product.html" class="bg-slate-800 text-white font-poppins text-sm font-semibold py-2 px-4 rounded-lg hover:bg-slate-700 transition-colors">Tambah Produk</a>
+        <a href="{{ url('/admin/dashboard/product/create') }}" class="bg-slate-800 text-white font-poppins text-sm font-semibold py-2 px-4 rounded-lg hover:bg-slate-700 transition-colors">Tambah Produk</a>
     </div>
     <div class="overflow-x-auto">
         <table class="w-full text-left">
@@ -39,33 +39,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="border-b border-slate-100">
-                    <td class="p-4 font-semibold text-slate-700 flex items-center">
-                        <img src="{{ asset('images/bolugulung/bolukeju.jpeg') }}" alt="Bolu Pandan" class="w-10 h-10 rounded-md mr-4 object-cover">
-                        Bolu Gulung Pandan
-                    </td>
-                    <td class="p-4 text-slate-600">Bolu Gulung</td>
-                    <td class="p-4 font-semibold text-slate-700">Rp 45.000</td>
-                    <td class="p-4"><span class="px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">30 Tersedia</span></td>
-                </tr>
-                <tr class="border-b border-slate-100">
-                    <td class="p-4 font-semibold text-slate-700 flex items-center">
-                            <img src="{{ asset('images/bolugulung/bolukeju.jpeg') }}" alt="Bolu Keju" class="w-10 h-10 rounded-md mr-4 object-cover">
-                        Bolu Gulung Keju
-                    </td>
-                    <td class="p-4 text-slate-600">Bolu Gulung</td>
-                    <td class="p-4 font-semibold text-slate-700">Rp 50.000</td>
-                    <td class="p-4"><span class="px-3 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">8 Tersedia</span></td>
-                </tr>
-                <tr class="border-b border-slate-100">
-                    <td class="p-4 font-semibold text-slate-700 flex items-center">
-                        <img src="{{ asset('images/bolugulung/bolukeju.jpeg') }}" alt="Bolu Cokelat" class="w-10 h-10 rounded-md mr-4 object-cover">
-                        Bolu Gulung Cokelat
-                    </td>
-                    <td class="p-4 text-slate-600">Bolu Gulung</td>
-                    <td class="p-4 font-semibold text-slate-700">Rp 50.000</td>
-                    <td class="p-4"><span class="px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">25 Tersedia</span></td>
-                </tr>
+                @forelse ($recentProducts as $recentProduct)
+                    <tr class="border-b border-slate-100">
+                        <td class="p-4 font-semibold text-slate-700 flex items-center">
+                            <img src="{{ asset('storage/products/'.$recentProduct->image) }}" alt="Bolu Pandan" class="w-10 h-10 rounded-md mr-4 object-cover">
+                            {{ $recentProduct->name }}
+                        </td>
+                        <td class="p-4 text-slate-600">{{ $recentProduct->category?->name ?? 'Tidak ada kategori!' }}</td>
+                        <td class="p-4 text-slate-600">{{ $recentProduct->description }}</td>
+                        <td class="p-4 font-semibold text-slate-700">{{ number_format($recentProduct->price, 0, ',', '.') }}</td>
+                        <td class="p-4"><span class="px-3 py-1 text-xs font-semibold {{ $recentProduct->stock < 10 ?'text-red-800 bg-red-100':'text-green-800 bg-green-100 ' }} rounded-full">{{ $recentProduct->stock }} Tersedia</span></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

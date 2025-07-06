@@ -21,11 +21,11 @@
 
         {{-- Grid Produk --}}
         <div class="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @forelse($products as $product)
                     <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300 group flex flex-col">
                         <div class="overflow-hidden">
-                            <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6 flex-grow flex flex-col text-left">
                             <h3 class="text-xl font-poppins font-semibold text-slate-800">{{ $product->name }}</h3>

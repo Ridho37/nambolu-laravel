@@ -15,7 +15,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                 <div class="w-full">
-                    <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-auto rounded-lg shadow-lg object-cover">
+                    <img src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-auto rounded-lg shadow-lg object-cover">
                 </div>
 
                 <div>
@@ -28,9 +28,9 @@
                     </div>
 
                     <div class="mt-8">
-                        <button class="w-full bg-slate-800 text-white font-bold font-poppins py-3 px-6 rounded-lg hover:bg-slate-700 transition-colors duration-300">
+                        <a href="https://wa.me/62895412174058?text=Halo,%saya%tertarik%membeli%{{ $product->name }}%seharga%Rp{{ number_format($product->price, 0, ',', '.') }}" class="w-full bg-slate-800 text-white font-bold font-poppins py-3 px-6 rounded-lg hover:bg-slate-700 transition-colors duration-300">
                             Tambah ke Keranjang (Fitur Selanjutnya)
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

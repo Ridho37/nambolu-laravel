@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->foreignId('id_category')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->unsignedInteger('price')->default(0);
             $table->unsignedInteger('stock')->default(0);
-            $table->string('image')->nullable(); // Untuk menyimpan path/nama file gambar
+            $table->string('image')->nullable()->default('default.jpeg'); // Untuk menyimpan path/nama file gambar
             $table->timestamps(); // Membuat kolom created_at dan updated_at
         });
     }

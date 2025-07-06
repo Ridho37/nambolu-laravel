@@ -15,27 +15,27 @@ class ProductSeeder extends Seeder
         $products = [
             [
                 'name' => 'Bolu Gulung Keju',
-                'id_category' => $boluId,
+                'category_id' => $boluId,
                 'description' => 'Lembutnya bolu dengan isian keju premium yang melimpah.',
                 'price' => 50000,
                 'stock' => 15,
-                'image' => 'bolugulung/bolukeju.jpeg',
+                'image' => 'default.jpeg.jpeg'
             ],
             [
                 'name' => 'Bolu Gulung Ga Keju',
-                'id_category' => $boluId,
+                'category_id' => $boluId,
                 'description' => 'Lembutnya bolu dengan isian keju premium yang tidak melimpah.',
                 'price' => 5000,
                 'stock' => 1,
-                'image' => 'bolugulung/bolukeju.jpeg',
+                'image' => 'default.jpeg',
             ],
             [
                 'name' => 'Bolu Gulung tebak?',
-                'id_category' => $boluId,
+                'category_id' => $boluId,
                 'description' => 'Lembutnya bolu dengan isian keju tidak premium yang sedikit.',
                 'price' => 500,
                 'stock' => 156,
-                'image' => 'bolugulung/bolukeju.jpeg',
+                'image' => 'default.jpeg',
             ],
         ];
 

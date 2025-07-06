@@ -13,12 +13,29 @@ class DashboardController extends Controller
     {
         $totalProducts   = Product::count();
         $totalCategories = Category::count();
-        $recentProducts  = Product::getRecentProducts(3);
+        $recentProducts  = Product::with('category')->latest()->take(3)->get();
 
         return view('dashboard.dashboard-page', [
             'totalProducts'     => $totalProducts,
             'totalCategories'   => $totalCategories,
             'recentProducts'    => $recentProducts,
         ]);
+    }
+
+    public function showProducts()
+    {
+        $allProducts = Product::with('category')->latest()->get();
+        return view('dashboard.dashboard-products', ['products' => $allProducts]);
+    }
+    
+    public function showCategories()
+    {
+        $allCategories = Category::latest()->get();
+        return view('dashboard.dashboard-categories', ['categories' => $allCategories]);
+    }
+
+    public function create()
+    {
+        return view('dashboard.dashboard-create');
     }
 }

@@ -16,11 +16,19 @@ class UserSeeder extends Seeder
     {
         User::where('email', 'admin@nambolu.com')->delete();
 
-        User::Create([
-            'name' => 'Admin Nambolu',
-            'email' => 'admin@example.com',
-            'username' => 'admin',
+        User::Create(
+        [
+            'name' => 'Super Admin 1',
+            'email' => 'admin1@example.com',
+            'username' => 'admin1',
             'password' => Hash::make('admin123'),
-        ]);
+        ],
+        [
+            'name' => 'Super Admin 2',
+            'email' => 'admin2@example.com',
+            'username' => 'admin2',
+            'password' => Hash::make('admin123'),
+        ]
+    );
     }
 }
