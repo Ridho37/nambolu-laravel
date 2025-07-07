@@ -36,6 +36,7 @@
                     <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Deskripsi</th>
                     <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Harga</th>
                     <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Stok</th>
+                    <th class="p-4 text-sm font-poppins font-semibold text-slate-500">Created at</th>
                 </tr>
             </thead>
             <tbody>
