@@ -11,11 +11,25 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    // app/Http/Controllers/ProductController.php
+
     public function index()
     {
-        // Hanya mengambil semua produk dan mengirimnya ke view
-        $products = Product::latest()->get();
-        return view('products.index', ['products' => $products]);
+        $categories = Category::all();
+        // Pastikan baris di bawah ini menggunakan paginate()
+        $products = Product::latest()->filter(request(['search', 'category']))->paginate(9); 
+        $title = 'All Products';
+
+        if(request('category')) {
+            $category = Category::firstWhere('slug', request('category'));
+            $title = 'Products in ' . $category->name;
+        }
+
+        return view('products.index', [
+            'title' => $title,
+            'products' => $products,
+            'categories' => $categories
+        ]);
     }
 
     public function show(Product $product)
@@ -32,27 +46,31 @@ class ProductController extends Controller
     // proses simpan data
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'name'          => 'required|string|max:255',
-            'category_id'   => 'required|exists:categories,id',
-            'description'   => 'nullable|string',
-            'price'         => 'required|integer|min:0',
-            'stock'         => 'required|integer|min:0',
-            'image'         => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'required|string',
+            'price' => 'required|integer|min:0',
+            'stock' => 'required|integer|min:0',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if($request->hasFile('image')){
-            $imageFile = $request->file('image');
-            $imageName = time().'.'.$imageFile->extension();
-            $destinationPath = storage_path('app/public/products');
-            $imageFile->move($destinationPath, $imageName);
-            // $imageFile->storeAs('app/public/products', $imageName);
-            $validateData['image'] = $imageName;
-        }
-        $validateData['slug'] = \Illuminate\Support\Str::slug($validateData['name']);
+        if ($request->hasFile('image')) {
+            // Perintah ini menyimpan file ke folder 'products' di dalam storage/app/public
+            // dan secara otomatis mengembalikan path lengkapnya (contoh: 'products/namafile.jpg')
+            $path = $request->file('image')->store('products', 'public');
 
-        Product::create($validateData);
-        return redirect('/admin/dashboard/products')->with(['message' => 'Data produk berhasil ditambah!', 'status'=>'success']);
+            // dd($path);
+
+            // Simpan path lengkap tersebut ke database
+            $validatedData['image'] = $path;
+        }
+
+        $validatedData['slug'] = \Illuminate\Support\Str::slug($validatedData['name']) . '-' . uniqid();
+
+        Product::create($validatedData);
+
+        return redirect()->route('products')->with('success', 'Data produk berhasil ditambahkan!');
     }
 
     // mengarahkan ke edit

@@ -22,11 +22,16 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function showProducts()
-    {
-        $allProducts = Product::with('category')->latest()->get();
-        return view('dashboard.dashboard-products', ['products' => $allProducts]);
-    }
+public function showProducts()
+{
+    // Ambil data produk dengan relasi kategori untuk menghindari N+1 problem
+    // dan urutkan dari yang terbaru, lalu paginasi
+    $products = \App\Models\Product::with('category')->latest()->paginate(10);
+
+    return view('dashboard.dashboard-products', [
+        'products' => $products
+    ]);
+}
     
     public function showCategories()
     {

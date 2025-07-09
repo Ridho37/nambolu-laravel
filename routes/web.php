@@ -2,54 +2,82 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController; // product
-use App\Http\Controllers\CategoryController; // product
-use App\Http\Controllers\AuthController; // login
-use App\Http\Controllers\Admin\DashboardController; // login
-use App\Models\Category;
-use Dflydev\DotAccessData\Data;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController; // <-- Route Publik
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\ContactMessageController; // <-- Route Admin
 
-// Rute Halaman Utama
-Route::get('/', [HomeController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Rute-rute untuk bagian publik (yang bisa diakses semua orang).
+|
+*/
 
-// RUTE BARU UNTUK HALAMAN SEMUA PRODUK
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-
-// Route Halaman Detail Produk
 Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
 
+// Route untuk memproses form "Hubungi Kami" dari halaman depan
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
-// route admin
-Route::get('/admin', [AuthController::class, 'login']);
+/*
+|--------------------------------------------------------------------------
+| Auth Routes
+|--------------------------------------------------------------------------
+|
+| Rute-rute untuk proses otentikasi (login & logout).
+|
+*/
 
 Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('login');
-
 Route::post('/admin/login', [AuthController::class, 'login']);
-
 Route::post('/admin/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-// hanya user tertentu yang bisa akses
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+| Semua rute di dalam grup ini dilindungi dan hanya bisa diakses
+| oleh pengguna yang sudah login.
+|
+*/
+
 Route::middleware(['auth'])->group(function() {
 
-    // admin
+    // Dashboard
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/admin/dashboard/products', [DashboardController::class, 'showProducts'])->name('products');
-    Route::get('/admin/dashboard/categories', [DashboardController::class, 'showCategories'])->name('categories');
 
-    // add product
+    // Manajemen Produk
+    Route::get('/admin/dashboard/products', [DashboardController::class, 'showProducts'])->name('products');
     Route::get('/admin/dashboard/product/create', [ProductController::class, 'create'])->name('create');
     Route::post('/admin/dashboard/product/store', [ProductController::class, 'store'])->name('store');
-
-    // update product
     Route::get('/admin/dashboard/product/{product}/edit', [ProductController::class, 'edit'])->name('edit');
     Route::put('/admin/dashboard/product/{product}', [ProductController::class, 'update'])->name('update');
-
-    // delete product
     Route::delete('/admin/dashboard/product/{product}', [ProductController::class, 'destroy'])->name('destroy');
 
-    // category
+    // Manajemen Kategori
+    Route::get('/admin/dashboard/categories', [DashboardController::class, 'showCategories'])->name('categories');
     Route::post('/admin/dashboard/categories/store', [CategoryController::class, 'store'])->name('cstore');
     Route::delete('/admin/dashboard/categories/{category}', [CategoryController::class, 'destroy'])->name('cdestroy');
+    
+    // Kotak Masuk Pesan
+    Route::get('/admin/dashboard/messages', [ContactMessageController::class, 'index'])->name('messages.index');
+
+    // Pengaturan Situs
+    Route::get('/admin/dashboard/settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::post('/admin/dashboard/settings', [SettingsController::class, 'update'])->name('settings.update');
+
+    // Profil Pengguna
+    Route::get('/admin/dashboard/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/admin/dashboard/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 });

@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product; // <-- Import Model Product
+use App\Models\Product; // <-- PASTIKAN MODEL PRODUCT DI-IMPORT
 
 class HomeController extends Controller
 {
+   /**
+     * Menampilkan halaman Beranda (Homepage).
+     */
     public function index()
     {
         // Ambil 3 produk terbaru dari database
-        $products = Product::latest()->take(3)->get();
+        $newestProducts = Product::latest()->take(3)->get();
 
-        // Kirim data products ke view 'index'
-        return view('index', ['products' => $products]);
+        // Kirim data produk ke view 'index' dengan variabel 'newestProducts'
+        return view('index', [
+            'newestProducts' => $newestProducts
+        ]);
     }
 }

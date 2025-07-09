@@ -10,30 +10,32 @@ use App\Models\User;
 class AuthController extends Controller
 {
     public function showLoginForm()
-    {
-        if(Auth::check()){
-            return redirect()->route('dashboard.dashboard-page');
-        }
-        return view('dashboard.dashboard-login');
+{
+    if (auth()->check()) {
+        return redirect()->route('dashboard');
     }
+
+    return view('dashboard.dashboard-login');
+}
 
     public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+{
+    // Ubah validasi untuk mencari 'username'
+    $credentials = $request->validate([
+        'username' => ['required', 'string'],
+        'password' => ['required'],
+    ]);
 
-        if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
-
-            return redirect()->intended('admin/dashboard');
-        }
-
-        return back()->withErrors([
-            'username' => 'Username atau password salah pak!',
-        ])->onlyInput('username');
+    // Auth::attempt akan secara otomatis mencocokkan dengan kolom 'username'
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->intended('/admin/dashboard');
     }
+
+    return back()->withErrors([
+        'username' => 'Username atau password yang diberikan salah.',
+    ])->onlyInput('username');
+}
 
     public function logout(Request $request)
     {

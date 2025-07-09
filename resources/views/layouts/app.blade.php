@@ -25,7 +25,10 @@
             <div id="main-nav" class="hidden md:flex space-x-8 text-lg font-poppins text-slate-800">
                 <a href="/#home" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="home">Home</a>
                 <a href="/#About" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="About">About</a>
-                <a href="/#Product" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="Product">Products</a>
+                {{-- UBAH BAGIAN INI --}}
+                <a href="{{ route('products.index') }}" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600 {{ Request::is('products') ? 'text-red-500' : '' }}" data-target-id="Product">Products</a>
+                {{-- ATAU jika ada lebih dari 1 segment di URL products (misal /products/1), gunakan 'products*' --}}
+                {{-- <a href="{{ route('products.index') }}" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600 {{ Request::is('products*') ? 'text-red-500' : '' }}" data-target-id="Product">Products</a> --}}
                 <a href="/#Contact" class="nav-link transition-colors duration-300 ease-in-out hover:text-rose-600" data-target-id="Contact">Contact</a>
             </div>
         </div>
