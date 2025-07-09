@@ -22,24 +22,24 @@
             <table class="w-full text-sm text-left text-gray-600">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                     <tr>
-                        <th scope="col" class="px-6 py-3">Gambar</th>
-                        <th scope="col" class="px-6 py-3">Nama Produk</th>
-                        <th scope="col" class="px-6 py-3">Kategori</th>
-                        <th scope="col" class="px-6 py-3">Harga</th>
-                        <th scope="col" class="px-6 py-3">Stok</th>
-                        <th scope="col" class="px-6 py-3 text-center">Aksi</th>
+                        <th scope="col" class="px-6 py-3  text-sm font-poppins font-semibold text-slate-500">Gambar</th>
+                        <th scope="col" class="px-6 py-3  text-sm font-poppins font-semibold text-slate-500">Nama Produk</th>
+                        <th scope="col" class="px-6 py-3  text-sm font-poppins font-semibold text-slate-500">Kategori</th>
+                        <th scope="col" class="px-6 py-3  text-sm font-poppins font-semibold text-slate-500">Harga</th>
+                        <th scope="col" class="px-6 py-3  text-sm font-poppins font-semibold text-slate-500 text-center">Stok</th>
+                        <th scope="col" class="px-6 py-3  text-sm font-poppins font-semibold text-slate-500 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($products as $product)
                         <tr class="bg-white border-b hover:bg-gray-50">
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 font-semibold">
                                 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-16 h-16 object-cover rounded-md">
                             </td>
                             <td class="px-6 py-4 font-semibold text-gray-900">{{ $product->name }}</td>
                             <td class="px-6 py-4">{{ $product->category->name }}</td>
                             <td class="px-6 py-4">Rp{{ number_format($product->price, 0, ',', '.') }}</td>
-                            <td class="px-6 py-4">{{ $product->stock }}</td>
+                            <td class="px-6 py-4 text-center"><span class="px-3 py-1 text-s font-semibold rounded-full {{ $product->stock < 10 ?'text-red-800 bg-red-100':'text-green-800 bg-green-100 ' }}">{{ $product->stock }}</span></td>
                             <td class="px-6 py-4 text-center">
                                 <div class="flex items-center justify-center space-x-3">
                                     {{-- Tombol Edit --}}

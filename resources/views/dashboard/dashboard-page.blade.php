@@ -42,7 +42,7 @@
                 @forelse ($recentProducts as $recentProduct)
                     <tr class="border-b border-slate-100">
                         <td class="p-4 font-semibold text-slate-700 flex items-center">
-                            <img src="{{ asset('storage/products/'.$recentProduct->image) }}" alt="Bolu Pandan" class="w-10 h-10 rounded-md mr-4 object-cover">
+                            <img src="{{ asset('storage/'.$recentProduct->image) }}" alt="Bolu Pandan" class="w-10 h-10 rounded-md mr-4 object-cover">
                             {{ $recentProduct->name }}
                         </td>
                         <td class="p-4 text-slate-600">{{ $recentProduct->category?->name ?? 'Tidak ada kategori!' }}</td>

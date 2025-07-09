@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Lembutnya bolu dengan isian keju premium yang melimpah.',
                 'price' => 50000,
                 'stock' => 15,
-                'image' => 'default.jpeg.jpeg'
+                'image' => 'products/default.jpeg'
             ],
             [
                 'name' => 'Bolu Gulung Ga Keju',
@@ -27,7 +27,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Lembutnya bolu dengan isian keju premium yang tidak melimpah.',
                 'price' => 5000,
                 'stock' => 1,
-                'image' => 'default.jpeg',
+                'image' => 'products/default.jpeg',
             ],
             [
                 'name' => 'Bolu Gulung tebak?',
@@ -35,7 +35,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Lembutnya bolu dengan isian keju tidak premium yang sedikit.',
                 'price' => 500,
                 'stock' => 156,
-                'image' => 'default.jpeg',
+                'image' => 'products/default.jpeg',
             ],
         ];
 
