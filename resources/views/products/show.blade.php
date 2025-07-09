@@ -15,7 +15,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                 <div class="w-full">
-                    <img src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-auto rounded-lg shadow-lg object-cover">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-auto rounded-lg shadow-lg object-cover">
                 </div>
 
                 <div>
