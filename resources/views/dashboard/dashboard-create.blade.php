@@ -76,8 +76,9 @@
 
         {{-- Deskripsi --}}
         <div class="mt-6">
-            <label for="description" class="block text-sm font-medium text-slate-600 mb-1">Deskripsi Produk</label>
-            <textarea name="description" id="description" rows="4" placeholder="Kue nya enak sekali" class="w-full placeholder-slate-400 border-slate-300 rounded-lg shadow-sm focus:border-rose-500 focus:ring-rose-500">{{ old('description') }}</textarea>
+            <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi</label>
+            <textarea name="description" id="description" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm">{{ old('description') }}</textarea>
+
         </div>
 
         {{-- Upload Gambar --}}

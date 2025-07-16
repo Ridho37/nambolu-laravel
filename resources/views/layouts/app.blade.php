@@ -58,10 +58,12 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-poppins font-semibold tracking-wider uppercase">Hubungi Kami</h3>
-                    <div class="mt-4 space-y-2 text-gray-400">
-                        <p>Condongcatur, Yogyakarta</p>
+                    <div class="mt-4 space-y-2 text-gray-400 text-sm leading-relaxed">
+                        <p><strong>Alamat:</strong> Condongcatur, Sleman, Yogyakarta</p>
+                        <p><strong>Jam Operasional:</strong> Setiap Hari, 08.00 – 17.00 WIB</p>
                         <p>
-                            <a href="https://wa.me/62895412174058?text=Halo,%20saya%20tertarik%20dengan%20produk%20Nambolu." target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-300">
+                            <a href="https://wa.me/62895412174058?text=Halo,%20saya%20tertarik%20dengan%20produk%20Nambolu." target="_blank" rel="noopener noreferrer"
+                            class="hover:text-white transition-colors duration-300">
                                 WhatsApp: +62 895-4121-74058
                             </a>
                         </p>
@@ -72,6 +74,7 @@
                         </p>
                     </div>
                 </div>
+
             </div>
             <hr class="my-10 border-slate-700">
             <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\ContactMessageController; // <-- Route Admin
+use App\Http\Controllers\Admin\AdminLogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,4 +81,6 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/admin/dashboard/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/admin/dashboard/profile', [ProfileController::class, 'update'])->name('profile.update');
 
+    Route::get('/admin/dashboard/activity', [\App\Http\Controllers\Admin\DashboardController::class, 'activity'])
+    ->name('admin.activity');
 });
